@@ -13,7 +13,7 @@
 .navbar > ul {list-style: none; margin: 0; padding: 0; background: #e4002b; display: flex; font-family: Verdana, Geneva, Tahoma, sans-serif;}
 .navbar li {position: relative;}
 .navbar a {display: block; padding: 15px 20px; color: white; text-decoration: none;}
-.navbar a:hover {background: #ffd659; color: #007ac2;}
+.navbar a:hover {background: black; color: white;}
             /* Dropdown menu */
 .dropdown-menu {display: none; position: absolute; background: #e4002b; list-style: none; margin: 0; padding: 0; top: 100%; left: 0; min-width: 150px; text-align: center; border: solid black 2px; border-top: none;}
 .dropdown-menu li a {padding: 10px;}
@@ -22,7 +22,10 @@
 .navbar > ul {display: flex;justify-content: center; /* centers the menu */ list-style: none; margin: 0; padding: 0; background: #e4002b;}
 
 h1{font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bold; color: white; text-align: center;}
-.Proposals{font-family: Verdana, Geneva, Tahoma, sans-serif; color: white; border: #ffd659 solid 5px; margin: 15px; text-align: center; background-color: #e4002b; border-radius: 15px; margin-left: 300px; margin-right: 300px;}
+.Proposals{font-family: Verdana, Geneva, Tahoma, sans-serif; color: white; border: #e4002b solid 5px; margin: 15px; text-align: center; background-color: black; border-radius: 15px; margin-left: 100px; margin-right: 100px;}
+#p1{font-family: Verdana, Geneva, Tahoma, sans-serif; color: #e4002b; font-style: italic;} 
+#p2{font-family: Verdana, Geneva, Tahoma, sans-serif; color: #e4002b; font-style: italic;} 
+#p3{font-family: Verdana, Geneva, Tahoma, sans-serif; color: #e4002b; font-style: italic;} 
           </style>  
     </head>
     <header>
@@ -53,15 +56,15 @@ h1{font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bold; color: w
       <!--H1 Heading-->
   <h1>Proposals</h1>
   <div class="Proposals">
-  <h2><i>Proposal 1 - Driver Selection Limits</i>
+  <h2><i id="p1">Proposal 1 - Driver Selection Limits</i>
   <p>During the regular season, each participant may select the same driver a maximum of 3 times.<br>
 When the playoffs begin, driver usage resets.<br>
 During the playoffs, each participant may select the same driver a maximum of 2 times.<br>
 This rule encourages strategy and prevents over-reliance on dominant drivers.</p>
-<p><i>Proposal 2 - Buy-in increase</i></p>
+<p><i id="p2">Proposal 2 - Buy-in increase</i></p>
 <p>The entry fee increases from $10 to $20 per participant.<br>
 The additional funds will increase the prize pool, making the league more competitive and rewarding.</p>
-<i>Proposal 3 - Last Place Punishment</i>
+<p><i id="p3">Proposal 3 - Last Place Punishment</i>
 <p>The participant who finishes last in the season standings is required to complete a punishment chosen by the league.<br>
 Punishment must be agreed upon before the season begins (e.g., social media challenge, photo punishment, buying the winner a gift, etc.).<br>
 Ensures engagement and adds entertainment value throughout the season.</p></h2>

@@ -14,7 +14,7 @@
 .navbar > ul {list-style: none; margin: 0; padding: 0; background: #e4002b; display: flex; font-family: Verdana, Geneva, Tahoma, sans-serif;}
 .navbar li {position: relative;}
 .navbar a {display: block; padding: 15px 20px; color: white; text-decoration: none;}
-.navbar a:hover {background: #ffd659; color: #007ac2;}
+.navbar a:hover {background: black; color: white;}
             /* Dropdown menu */
 .dropdown-menu {display: none; position: absolute; background: #e4002b; list-style: none; margin: 0; padding: 0; top: 100%; left: 0; min-width: 150px; text-align: center; border: solid black 2px; border-top: none;}
 .dropdown-menu li a {padding: 10px;}
@@ -22,10 +22,16 @@
 .dropdown:hover .dropdown-menu {display: block;}
 .navbar > ul {display: flex;justify-content: center; /* centers the menu */ list-style: none; margin: 0; padding: 0; background: #e4002b;}
 
-.h1{font-family: Verdana, Geneva, Tahoma, sans-serif; text-align: center; border: #ffd659 solid 5px; background-color: #e4002b; border-radius: 15px; margin: 15px; font-size: x-large; color: white; font-weight: bold; margin-left: 100px; margin-right: 100px;}
-.h2{font-family: Verdana, Geneva, Tahoma, sans-serif; text-align: center; border: #ffd659 solid 5px; background-color: #e4002b; border-radius: 15px; margin: 15px; font-size: x-large; color: white; font-weight: bold; margin-left: 100px; margin-right: 100px;}
-.h3{font-family: Verdana, Geneva, Tahoma, sans-serif; text-align: center; border: #ffd659 solid 5px; background-color: #e4002b; border-radius: 15px; margin: 15px; font-size: x-large; color: white; font-weight: bold; margin-left: 100px; margin-right: 100px;}
+.h1{font-family: Verdana, Geneva, Tahoma, sans-serif; text-align: center; border: #e4002b solid 5px; background-color: black; border-radius: 15px; margin: 15px; font-size: x-large; color: white; font-weight: bold; margin-left: 100px; margin-right: 100px; padding: 15px;}
+.h2{font-family: Verdana, Geneva, Tahoma, sans-serif; text-align: center; border: #e4002b solid 5px; background-color: black; border-radius: 15px; margin: 15px; font-size: x-large; color: white; font-weight: bold; margin-left: 100px; margin-right: 100px; padding: 15px;}
+.h3{font-family: Verdana, Geneva, Tahoma, sans-serif; text-align: center; border: #e4002b solid 5px; background-color: black; border-radius: 15px; margin: 15px; font-size: x-large; color: white; font-weight: bold; margin-left: 100px; margin-right: 100px; padding: 15px;}
 
+#p1{font-family: Verdana, Geneva, Tahoma, sans-serif; font-style: normal; color: white;}
+#p2{font-family: Verdana, Geneva, Tahoma, sans-serif; font-style: normal; color: white;}
+#p3{font-family: Verdana, Geneva, Tahoma, sans-serif; font-style: normal; color: white;}
+h1{color: #e4002b;}
+h2{color: #e4002b;}
+h3{color: #e4002b;}
           </style>  
     </head>
     <header>
@@ -55,15 +61,13 @@
   <!--News Section-->
   <div class="h1">  
   <h1>2025 Champion Sam Cook</h1>  
-<p>The 2025 Fantasy NASCAR Season concluded with the race at talladega. Race number 34/36 where Sam received enough points to secure the championship with 2 races remaining.</p> 
-</div>
-<div class="h2">
-<h2>Voting on Rule Changes Begins on November 10th, 2025</h2>
-<p>There are currently 6 rule changes proposed to be voted on for the 2026 Fantasy NASCAR Season. There could be more proposals added in the coming days.</p>
-</div>
-<div class="h3">
-<h3>2026 Season</h3>
-<p>The 2026 season starts on Sunday Febuary 15th, 2026. Please make sure to submit your rule change proposals in the facebook messenger chat, so that we may establish the new rule set well in advance.<br>
+<p id="p1">The 2025 Fantasy NASCAR Season concluded with the race at Talladega. Race number 34/36 where Sam received enough points to secure the championship with 2 races remaining.</p> 
+
+<h2><i>Voting on Rule Changes Begins on November 10th, 2025</h2>
+<p id="p2"> There are currently 3 rule changes proposed to be voted on for the 2026 Fantasy NASCAR Season.<br> Additional proposals are expected in the coming days.</p>
+
+<h3><i>2026 Season</h3>
+<p id="p3">The 2026 season starts on Sunday Febuary 15th, 2026.<br> Please make sure to submit your rule change proposals in the facebook messenger chat, so that we may establish the new rule set well in advance.<br><br>
 Visit the Proposals section to view all currently proposed rules for the 2026 season.</p>
 </div>
 </main>
@@ -79,6 +83,4 @@ Visit the Proposals section to view all currently proposed rules for the 2026 se
 </div>
 </footer>
 
-
 </html>
-
