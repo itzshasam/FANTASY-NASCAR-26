@@ -1,86 +1,535 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <style>
-          html,body{height:100%; margin: 0;}
-            body{margin: 0px; background-color: rgb(53, 52, 52); display: flex; flex-direction: column;}
-            main{margin-left: 0px; margin-right: 0px; flex: 1;}
-            #headerlogo{background-color: black; margin-bottom: 0px; margin-top: 0px;}
-            h1{margin: 20px; padding: 15px; text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-style: italic; border: black 15px;}
-            .sidenav{font-family: Verdana, Geneva, Tahoma, sans-serif; color: white;text-align: center; padding-bottom: 25px; background-color: black; margin-bottom: 0px; position:static ; bottom: 0px; width: 100%; height: 120px; margin-top: auto; margin-bottom: 0px;}
-            
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NASCAR Fantasy League</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* ===== Global Styles ===== */
+    :root {
+      --bg-dark: #0b0c10;
+      --bg-light: #1f2833;
+      --accent: #1e9fe9;
+      --accent-alt: #ff9800;
+      --text-main: #ffffff;
+      --text-muted: #c5c6c7;
+      --border-soft: #3a3f4b;
+    }
 
-            /*Navbar items*/
-.navbar > ul {list-style: none; margin: 0; padding: 0; background: #e4002b; display: flex; font-family: Verdana, Geneva, Tahoma, sans-serif;}
-.navbar li {position: relative;}
-.navbar a {display: block; padding: 15px 20px; color: white; text-decoration: none;}
-.navbar a:hover {background: black; color: white;}
-            /* Dropdown menu */
-.dropdown-menu {display: none; position: absolute; background: #e4002b; list-style: none; margin: 0; padding: 0; top: 100%; left: 0; min-width: 150px; text-align: center; border: solid black 2px; border-top: none;}
-.dropdown-menu li a {padding: 10px;}
-            /* Show on hover */
-.dropdown:hover .dropdown-menu {display: block;}
-.navbar > ul {display: flex;justify-content: center; /* centers the menu */ list-style: none; margin: 0; padding: 0; background: #e4002b;}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-.h1{font-family: Verdana, Geneva, Tahoma, sans-serif; text-align: center; border: #e4002b solid 5px; background-color: black; border-radius: 15px; margin: 15px; font-size: x-large; color: white; font-weight: bold; margin-left: 100px; margin-right: 100px; padding: 15px;}
-.h2{font-family: Verdana, Geneva, Tahoma, sans-serif; text-align: center; border: #e4002b solid 5px; background-color: black; border-radius: 15px; margin: 15px; font-size: x-large; color: white; font-weight: bold; margin-left: 100px; margin-right: 100px; padding: 15px;}
-.h3{font-family: Verdana, Geneva, Tahoma, sans-serif; text-align: center; border: #e4002b solid 5px; background-color: black; border-radius: 15px; margin: 15px; font-size: x-large; color: white; font-weight: bold; margin-left: 100px; margin-right: 100px; padding: 15px;}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at top, #202833 0, #050608 60%);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
 
-#p1{font-family: Verdana, Geneva, Tahoma, sans-serif; font-style: normal; color: white;}
-#p2{font-family: Verdana, Geneva, Tahoma, sans-serif; font-style: normal; color: white;}
-#p3{font-family: Verdana, Geneva, Tahoma, sans-serif; font-style: normal; color: white;}
-h1{color: #e4002b;}
-h2{color: #e4002b;}
-h3{color: #e4002b;}
-          </style>  
-    </head>
-    <header>
-        <p id="headerlogo" style="text-align: center";><img src="NF Racing 26.png" width="150">
-    </header>
-    <body>
-        <body>
-          <main>
-    <nav class="navbar">
-  <ul>
-    <!--<li><a href="Homepage Fantasy Nascar.html">Home</a></li>-->
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
 
-    <li class="dropdown">
-      <a href="#">Fantasy NASCAR ▼</a>
-      <ul class="dropdown-menu">
-        <li><a href="Rules.html">Rules</a></li>
-        <li><a href="standings.html">Standings</a></li>
-        <li><a href="Selection Count.html">Selection Count</a></li>
-        <li><a href="Prevous seasons.html" >Previous Seasons</a></li>
-        <li><a href="Proposals.html">Proposals</a></li>
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== Layout ===== */
+    header {
+      background: linear-gradient(90deg, #111, #333);
+      border-bottom: 2px solid var(--accent);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      background: var(--accent);
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+      font-size: 0.8rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+    }
+
+    nav li {
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+    }
+
+    nav a {
+      padding-bottom: 0.2rem;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav a:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 1.5rem auto;
+      padding: 0 1rem 2rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+    }
+
+    /* ===== Cards ===== */
+    .card {
+      background: var(--bg-light);
+      border-radius: 8px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .card-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border: 1px solid var(--border-soft);
+      border-radius: 999px;
+      padding: 0.15rem 0.6rem;
+    }
+
+    /* ===== News Section ===== */
+    .news-item {
+      border-bottom: 1px solid var(--border-soft);
+      padding: 0.75rem 0;
+    }
+
+    .news-item:last-child {
+      border-bottom: none;
+    }
+
+    .news-title {
+      font-weight: bold;
+      margin-bottom: 0.25rem;
+    }
+
+    .news-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .news-body {
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    /* ===== Standings Table ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 0.5rem;
+      text-align: left;
+    }
+
+    th {
+      background: #151820;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    tr:nth-child(even) {
+      background: #232733;
+    }
+
+    tr:nth-child(odd) {
+      background: #1a1e28;
+    }
+
+    .pos-col {
+      width: 40px;
+      text-align: center;
+      font-weight: bold;
+      color: var(--accent-alt);
+    }
+
+    .points-col {
+      text-align: right;
+    }
+
+    /* ===== Selection Count ===== */
+    .selection-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .selection-summary span {
+      color: var(--text-muted);
+    }
+
+    .selection-count {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: var(--accent);
+    }
+
+    .selection-bar {
+      background: #11141c;
+      border-radius: 999px;
+      overflow: hidden;
+      height: 10px;
+      border: 1px solid var(--border-soft);
+    }
+
+    .selection-bar-fill {
+      width: 60%; /* Example: 60% of picks used */
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-alt));
+    }
+
+    /* ===== Previous Season Results ===== */
+    .season-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .season-card {
+      background: #151820;
+      border-radius: 6px;
+      border: 1px solid var(--border-soft);
+      padding: 0.6rem 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .season-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.35rem;
+    }
+
+    .season-year {
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .season-rank {
+      font-size: 0.8rem;
+      color: var(--accent-alt);
+    }
+
+    .season-body {
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .season-points {
+      font-size: 0.85rem;
+      color: var(--text-main);
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-soft);
+      text-align: center;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 900px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span>NFocus</span>
+      <div>fantasy Nascar</div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#news">News</a></li>
+        <li><a href="#standings">Standings</a></li>
+        <li><a href="#selection">Selection Count</a></li>
+        <li><a href="#results">Previous Results</a></li>
       </ul>
-    </li>
+    </nav>
+  </header>
 
-    <li><a href="About.html">About</a></li>
-    <li><a href="https://nfocus-esports.square.site/s/shop">Shop</a></li>
-  </ul>
-  </nav>
-  <!--News Section-->
-  <div class="h1">  
-  <h1>First Place Tightens Up!</h1>  
-<p id="p1">Anthony extends his points lead!</p> 
+  <main>
+    <!-- Left Column: News + Standings -->
+    <section>
+      <!-- News -->
+      <div class="card" id="news">
+        <div class="card-header">
+          <div class="card-title">League News</div>
+          <div class="card-tag">Latest</div>
+        </div>
 
-<h2><i>LOOKING AHEAD</h2>
-<p id="p2">This week the Cup Series is at Sonoma!<br><br>  
-<h3><i>POINTS UPDATED </h3>
-<p id="p3">CHECK OUT THE STANDINGS PAGE TO SEE ALL THE <br>MOST RECENT MOVEMENT IN THE POINTS FOLLOWING the Cornado Naval Base Street Course.
-</p>
-</div>
-</main>
+        <article class="news-item">
+          <div class="news-title">Week 10 Lineups Lock at the drop of the green flag on Sunday</div>
+          <div class="news-meta">Sonoma • Posted 6/26/26</div>
+          <div class="news-body">
+            Make sure you submit your selection before the green flag waves on raceday.
+          </div>
+        </article>
+
+        <article class="news-item">
+          <div class="news-title">Points Lead Grows</div>
+          <div class="news-meta">Commisioner • Posted 6/26/26</div>
+          <div class="news-body">
+            Anthony now has a 33 point lead over John. The previous week Anthony held a 7 point lead over John. 
+          </div>
+        </article>
+
+        <article class="news-item">
+          <div class="news-title">Last Road Course of the Season</div>
+          <div class="news-meta">Commisioner • Posted 6/26/26</div>
+          <div class="news-body">
+            Road Courses have essentially become a place where no one gains ground due to all members selecting the same driver.
+            This will change this week as John and Jaden have 0 SVG selections remaining. 
+          </div>
+        </article>
+      </div>
+
+      <!-- Standings -->
+      <div class="card" id="standings">
+        <div class="card-header">
+          <div class="card-title">Current Standings</div>
+          <div class="card-tag">Season 2026</div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th class="pos-col">Pos</th>
+              <th>Name</th>
+              <th>Points Behind</th>
+              <th class="points-col">Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="pos-col">1</td>
+              <td>Anthony</td>
+              <td>0</td>
+              <td class="points-col">669</td>
+            </tr>
+            <tr>
+              <td class="pos-col">2</td>
+              <td>John</td>
+              <td>33</td>
+              <td class="points-col">636</td>
+            </tr>
+            <tr>
+              <td class="pos-col">3</td>
+              <td>Ryan</td>
+              <td>38</td>
+              <td class="points-col">631</td>
+            </tr>
+            <tr>
+              <td class="pos-col">4</td>
+              <td>Dakota</td>
+              <td>43</td>
+              <td class="points-col">626</td>
+            </tr>
+            <tr>
+              <td class="pos-col">5</td>
+              <td>Jaden</td>
+              <td>60</td>
+              <td class="points-col">609</td>
+            </tr>
+              <tr>
+              <td class="pos-col">6</td>
+              <td>Samuel</td>
+              <td>126</td>
+              <td class="points-col">543</td>
+            </tr>
+            <tr>
+              <td class="pos-col">7</td>
+              <td>Tony</td>
+              <td>140</td>
+              <td class="points-col">529</td>
+            </tr>
+            <tr>
+              <td class="pos-col">8</td>
+              <td>Daisy</td>
+              <td>149</td>
+              <td class="points-col">520</td>
+            </tr>
+            <tr>
+              <td class="pos-col">9</td>
+              <td>Corry</td>
+              <td>169</td>
+              <td class="points-col">500</td>
+            </tr>
+            <tr>
+              <td class="pos-col">10</td>
+              <td>Kevin</td>
+              <td>453</td>
+              <td class="points-col">216</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Right Column: Selection Count + Previous Season Results -->
+    <section>
+      <!-- Selection Count -->
+      <div class="card" id="selection">
+        <div class="card-header">
+          <div class="card-title">Selection Count</div>
+          <div class="card-tag">As of the End of Week 17</div>
+        </div>
+
+        <div class="selection-summary">
+          <div>
+            <strong>Anthony:</strong> <span>Austin Cindric 1/2, William Byron 1/2, Ross Chastain 1/2, Christopher Bell 1/2, Kyle Larson 1/2, Tyler Reddick 1/2, Denny Hamlin 2/2, Chase Briscoe 1/2, Ty Gibbs 1/2, Ricky Stenhouse 1/2, Carson Hocevar 1/2, SVG 1/2, Chase Elliott 1/2, Ryan Blaney 1/2, Daniel Suarez 1/2, Michael McDowell 1/2<br><br>
+              Corry:<br> William Byron 2/2, Kyle Busch 1/2, Alex Bowman 1/2, Kyle Larson 2/2, Christopher Bell 2/2, Chase Briscoe 1/2, Chase Elliott 1/2, Ryan Blaney, Carson Hocevar 1/2, Connor Zillisch 1/2, Ross Chastain 1/2, Chris Buesher 1/2, Denny Hamlin 1/2, SVG 1/2<br><br>
+                Dakota:<br> Kyle Busch 1/2, Ryan Blaney 1/2, Tyler Reddick 1/2, Joey Logano 1/2, Denny Hamlin 2/2, Bubba Wallace 1/2, William Byron 1/2, Chase Briscoe 1/2, Ty Gibbs 1/2, Chris Buescher 1/2, Carson Hocevar 2/2, Connor Zillisch 1/2, Austin Hill 1/2, Kyle Larson 1/2, SVG 1/2<br><br>
+              Daisy:<br> Christopher Bell 2/2, Austin Dilon 1/2, Connor Zillisch 1/2, Austin Cindric 1/2, Bubba Wallace 1/2, Kyle Larson 2/2, Ty Gibbs 1/2, Denny Hamlin 2/2, Ryan Blaney 2/2, Daniel Suarez 1/2, SVG 1/2, William Byron 1/2, Carson Hocevar 1/2<br><br>
+              Jaden:<br> Alex Bowman 1/2, Austin Cindric 1/2, Christopher Bell 2/2, Ryan Blaney 2/2, Denny Hamlin 2/2, Chase Elliott 1/2, Kyle Larson 1/2, Ty Gibbs 1/2, Chris Buescher 1/2, Brad Keselowski 1/2, SVG 2/2, Tyler Reddick 2/2<br><br>
+              John:<br> Joey Logano 1/2, Chase Elliott 1/2, SVG 2/2, Kyle Larson 2/2, William Byron 2/2, Denny Hamlin 2/2, Ryan Blaney 1/2, Tyler Reddick 2/2, Chase Briscoe 1/2, Christopher Bell 1/2, Carson Hocevar 1/2, Ty Gibbs 1/2 <br><br>
+              Kevin:<br> Denny Hamlin 1/2, Bubba Wallace 2/2, Ty Gibbs 1/2, Daniel Suarez 1/2, SVG 1/2, Austin Hill 1/2<br><br>
+              Sam:<br> Chris Buescher 2/2, Brad Keselowski 1/2, Tyler Reddick 2/2, Joey Logano 1/2, Christopher Bell 2/2, Chase Briscoe 1/2, William Byron 2/2, Kyle Larson 1/2, Bubba Wallace 1/2, Carson Hocevar 1/2, Denny Hamlin 1/2, SVG 1/2<br><br>
+              Tony:<br> Ricky Stenhouse Jr. 1/2, Ryan Blaney 2/2, William Byron 1/2, Ross Chastain 1/2, Brad Keselowski 1/2, Kyle Larson 2/2, Denny Hamlin 1/2, Carson Hocevar 1/2, Christopher bell 1/2, Chase Elliott 1/2, Chris Buescher 1/2, SVG 1/2, Alex Bowman 1/2, Erik Jones 1/2<br><br>
+              Ryan:<br> Ryan Blaney 2/2, Joey Logano 1/2, SVG 1/2, Tyler Reddick 1/2, Denny Hamlin 2/2, Chase Elliott 1/2, William Byron 2/2, Ty Gibbs 2/2, Kyle Larson 1/2, Austin Cindric 1/2, Ross Chastain 1/2, Brad Keselowski 1/2, Michael McDowell 1/2
+          </span>
+              </div>
+          <div class="selection-count"></div>
+        </div>
+        <p style="margin-top: 0.75rem; font-size: 0.85rem; color: var(--text-muted);">
+          You still have <strong>6</strong> open slots for this race. Consider locking in
+          a mix of playoff contenders and da
+        </p>
+      </div>
+
+      <!-- Previous Season Results -->
+      <div class="card" id="results">
+        <div class="card-header">
+          <div class="card-title">Previous Season Results</div>
+          <div class="card-tag">History</div>
+        </div>
+
+        <div class="season-grid">
+          <div class="season-card">
+            <div class="season-header">
+              <div class="season-year">2025 Season</div>
+              <div class="season-rank">Champion</div>
+            </div>
+            <div class="season-body">
+               Samuel C.
+            </div>
+            <div class="season-points">
+              Total Points: <strong>1261</strong>  <strong></strong>
+            </div>
+          </div>
+
+          <div class="season-card">
+            <div class="season-header">
+              <div class="season-year">2024 Season</div>
+              <div class="season-rank">Champion</div>
+            </div>
+            <div class="season-body">
+              Samuel C.
+            </div>
+            <div class="season-points">
+              Total Points: <strong>393</strong> <strong></strong>
+            </div>
+          </div>
+
+          <div class="season-card">
+            <div class="season-header">
+              <div class="season-year">2023 Season</div>
+              <div class="season-rank">Season Not Held</div>
+            </div>
+            <div class="season-body">
+              N/A
+            </div>
+            <div class="season-points">
+              Total Points: <strong>N/A</strong> <strong></strong>
+            </div>
+          </div>
+
+          <div class="season-card">
+            <div class="season-header">
+              <div class="season-year">2022 Inuagural Season</div>
+              <div class="season-rank">Champion</div>
+            </div>
+            <div class="season-body">
+              Samuel C.
+            </div>
+            <div class="season-points">
+              Total Points: <strong>682</strong> <strong></strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    NFOCUS Fantasy NASCAR League • Not affiliated with NASCAR. League is owned and operated by Samuel C and Dakota R.
+  </footer>
 </body>
-<footer>
-    <!--Side Nav-->
-<div class="sidenav" style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: 900;">
-    <br><p>NFocus Esports™ Socials:</p>
-    <a href="https://x.com/NFocus_Esports"><img src="x-social-media-white-icon.png" width="34px"></a>
-    <a href="https://discord.gg/a5BrDFZghW"><img src="discord-white-icon.webp" width="40px"></a>
-    <a href="https://twitch.tv/nfocus_esports"><img src="twitch-white-icon.webp" width="35"> </a>
-</div>
-</div>
-</footer>
-
 </html>
+
